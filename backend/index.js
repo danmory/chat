@@ -7,7 +7,6 @@ io.on('connection', (socket)=> {
     socket.on('message', (msg) =>
         socket.broadcast.json.send({'event': 'messageReceived', msg })
     )
-
 })
 
 httpServer.listen(PORT)

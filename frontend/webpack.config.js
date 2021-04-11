@@ -1,18 +1,25 @@
 const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HTMLWebpackPlugin = require('html-webpack-plugin')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 
 const stylesLoader = (additional = null) => {
     const loaders = ['vue-style-loader', 'css-loader']
-    if(additional) loaders.push(`${additional}-loader`)
+    if (additional) loaders.push(`${additional}-loader`)
     return loaders
 }
 
+const env = process.env.NODE_ENV
+
 module.exports = {
-    entry: path.resolve(__dirname, 'src', 'index.js'),
+    mode: env || 'development',
+    entry: path.resolve(__dirname, 'src', 'main.js'),
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].js'
+        filename: '[name].bundle.js'
+    },
+    devServer: {
+        contentBase: path.resolve(__dirname, 'dist')
     },
     module: {
         rules: [
@@ -33,7 +40,10 @@ module.exports = {
         ]
     },
     plugins: [
-        new HtmlWebpackPlugin(),
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new HTMLWebpackPlugin({
+            template: './src/index.html'
+        }),
+        new CleanWebpackPlugin()
     ]
 }
