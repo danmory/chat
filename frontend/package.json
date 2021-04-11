@@ -4,7 +4,7 @@
   "description": "chat frontend",
   "private": true,
   "scripts": {
-    "serve": "webpack serve --open"
+    "serve": "npx webpack serve"
   },
   "keywords": [
     "frontend",
