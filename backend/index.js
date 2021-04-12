@@ -1,12 +1,9 @@
-const httpServer = require('http').createServer()
-const io = require('socket.io')(httpServer)
+const express = require( "express")
+const app = express()
 const PORT = process.env.PORT || 3000
 
-io.on('connection', (socket)=> {
-    socket.json.send({'event':'connected'})
-    socket.on('message', (msg) =>
-        socket.broadcast.json.send({'event': 'messageReceived', msg })
-    )
+app.post('/enter', (req, res) => {
+
 })
 
-httpServer.listen(PORT)
+app.listen(PORT, () => console.log(`started on port ${PORT}`))

@@ -1,6 +1,6 @@
 <template>
   <AuthorizationForm v-if="!isAuthorized" @authorized="authorize"></AuthorizationForm>
-  <Chat v-else-if="isAuthorized"></Chat>
+  <Chat v-else-if="isAuthorized" :="userInfo"></Chat>
 </template>
 
 <script>
@@ -15,7 +15,7 @@
     },
     data: () => ({
       isAuthorized: false,
-      userInfo: {}
+      userInfo: { name: '', room: '' }
     }),
     methods: {
       authorize(info){

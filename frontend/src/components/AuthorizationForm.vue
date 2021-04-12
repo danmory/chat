@@ -8,28 +8,27 @@
 </template>
 
 <script>
-import { SERVER_URL } from '../utils'
+  import { SERVER_URL } from '../utils'
 
-export default {
-  name: "AuthorizationForm",
-  data: () => ({
-    name: '',
-    room: ''
-  }),
-  methods: {
-    async enterRoom(event){
-      const info = {'name': this.name, 'room': this.room}
-      await fetch(SERVER_URL + '/enter', {
-        method: 'POST',
-        headers: {
-          'Content-Type' : 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify(info)
-      })
-      this.$emit('authorized', info)
-
-
+  export default {
+    name: "AuthorizationForm",
+    data: () => ({
+      name: '',
+      room: ''
+    }),
+    methods: {
+      async enterRoom(event){
+        const info = {'name': this.name, 'room': this.room}
+        await fetch(`http://${SERVER_URL}/enter`, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type' : 'application/json;charset=utf-8'
+          },
+          body: JSON.stringify(info)
+        })
+        this.$emit('authorized', info)
+      }
     }
   }
-}
 </script>
