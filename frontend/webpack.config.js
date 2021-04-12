@@ -13,7 +13,7 @@ const env = process.env.NODE_ENV
 
 module.exports = {
     mode: env || 'development',
-    entry: path.resolve(__dirname, 'src', 'main.js'),
+    entry: ['babel-polyfill', path.resolve(__dirname, 'src', 'main.js')],
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].bundle.js'
