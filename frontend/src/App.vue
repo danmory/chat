@@ -1,10 +1,18 @@
 <template>
-    <h1>Hello world</h1>
+  <AuthorizationForm v-if="!isAuthorized"></AuthorizationForm>
 </template>
 
 <script>
+    import AuthorizationForm from './components/AuthorizationForm.vue'
+
     export default {
-      name: 'App'
+      name: 'App',
+      components: {
+        AuthorizationForm
+      },
+      data: () => ({
+        isAuthorized: false
+      })
     }
 </script>
 
