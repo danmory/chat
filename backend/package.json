@@ -4,7 +4,7 @@
   "description": "chat backend",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon index.js"
   },
   "keywords": [
     "chat",
@@ -14,9 +14,12 @@
   "author": "Danila Moriakov <leonardo842@list.ru>",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "http": "0.0.1-security",
-    "socket.io": "^4.0.1",
-    "ws": "^7.4.4"
+    "express-ws": "^4.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }

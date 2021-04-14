@@ -17,17 +17,21 @@
       room: ''
     }),
     methods: {
-      async enterRoom(event){
-        const info = {'name': this.name, 'room': this.room}
-        await fetch(`http://${SERVER_URL}/enter`, {
+      async enterRoom(){
+        const info = {
+          name: this.name,
+          room: this.room
+        }
+        let response = await fetch(`http://${SERVER_URL}/enter`, {
           method: 'POST',
-          mode: 'no-cors',
           headers: {
             'Content-Type' : 'application/json;charset=utf-8'
           },
           body: JSON.stringify(info)
         })
-        this.$emit('authorized', info)
+        response.ok?
+          this.$emit('authorized', info):
+          alert('Something wrong happened')
       }
     }
   }

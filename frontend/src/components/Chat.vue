@@ -8,9 +8,9 @@
 
   export default {
     name: 'Chat',
-    data: () => {
+    data: () => ({
       msg: ''
-    },
+    }),
     props: ['name', 'room'],
     created() {
       this.init()
