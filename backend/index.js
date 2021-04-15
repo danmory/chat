@@ -31,9 +31,8 @@ wss.on('connection', (socket, req) => {
     if (!rooms.includes(socket.room) || !users.includes(socket.name)){
         socket.close()
     }
-    socket.on('message', message => {
-        broadcast(message, wss)
-    })
+    socket.on('message', message => broadcast(message, wss) )
+    socket.on('close', () => users.splice(users.indexOf(socket.name)) )
 })
 
 server.listen(PORT)
