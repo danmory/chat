@@ -13,7 +13,7 @@ function authMiddleware(users){
             }
         }
 
-        isExists? res.status(401).send('user already exists'): next()
+        isExists? res.status(401).send(JSON.stringify({ err: 'user already exists' })) : next()
     }
 }
 
