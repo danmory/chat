@@ -18,14 +18,19 @@ app.use(bodyParser.json())
 app.use(cors())
 
 const users = []
+const rooms = []
 
 app.post('/enter', [validateMiddleware, authMiddleware(users)], (req, res) => {
-    users.push(req.body)
+    users.push(req.body.name)
+    rooms.push(req.body.room)
     res.sendStatus(200)
 })
 
 wss.on('connection', (socket, req) => {
-    socket.room = req.url.replace('/', '')
+    [socket.name, socket.room] = req.url.replace('/', '').split('&')
+    if (!rooms.includes(socket.room) || !users.includes(socket.name)){
+        socket.close()
+    }
     socket.on('message', message => {
         broadcast(message, wss)
     })
