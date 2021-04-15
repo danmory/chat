@@ -1,6 +1,6 @@
 <template>
   <div class="chat-messages">
-    <p v-for="m in messages">{{m.user}} says: {{m.message}}</p>
+    <p v-for="m in messages">{{m.name}} says: {{m.message}}</p>
   </div>
 </template>
 

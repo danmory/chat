@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const authMiddleware = require('./middlewares/authMiddleware')
 const validateMiddleware = require('./middlewares/validateMiddleware')
+const { broadcast } = require('./utils')
 
 const app = express()
 const server = http.createServer(app)
@@ -23,12 +24,11 @@ app.post('/enter', [validateMiddleware, authMiddleware(users)], (req, res) => {
     res.sendStatus(200)
 })
 
-wss.on('connection', (socket) => {
-    // TODO: for each socket assign property 'room' and make event listener on message
+wss.on('connection', (socket, req) => {
+    socket.room = req.url.replace('/', '')
+    socket.on('message', message => {
+        broadcast(message, wss)
+    })
 })
 
 server.listen(PORT)
-
-function broadcast(m){
-    // TODO: broadcast to all users based on room
-}

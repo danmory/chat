@@ -1,4 +1,4 @@
-const objDeepCompare = require('../utils')
+const { objDeepCompare } = require('../utils')
 
 function authMiddleware(users){
     /* req.body contains information about the user tried to connect

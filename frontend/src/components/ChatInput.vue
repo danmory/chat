@@ -1,5 +1,5 @@
 <template>
-  <form class="chat-input">
+  <form class="chat-input" @keydown.enter.prevent>
     <input type="text" name="message" v-model="message">
     <button type="button" @click="sendMessage">Send</button>
   </form>

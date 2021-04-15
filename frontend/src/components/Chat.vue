@@ -25,7 +25,7 @@
     },
     methods: {
       init_sock(){
-        this.socket = new WebSocket(`ws://${SERVER_URL}`)
+        this.socket = new WebSocket(`ws://${SERVER_URL}/${this.room}`)
         this.socket.onopen = () => alert('connection established')
         this.socket.onclose = () => {
           alert('closed')
