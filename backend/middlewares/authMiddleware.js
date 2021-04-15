@@ -1,12 +1,12 @@
-const { objDeepCompare } = require('../utils')
+const objDeepCompare = require('../utils')
 
-function authorizationMiddleware(users){
+function authMiddleware(users){
     /* req.body contains information about the user tried to connect
        in format { name: 'user_name', room: 'room_name' }
     */
     return function(req, res, next){
         let isExists = false
-        for (let user in users){
+        for (let user of users){
             if (objDeepCompare(req.body, { name: user.name, room: user.room })){
                 isExists = true
                 break
@@ -14,8 +14,7 @@ function authorizationMiddleware(users){
         }
 
         isExists? res.status(401).send('user already exists'): next()
-
     }
 }
 
-module.exports = authorizationMiddleware
+module.exports = authMiddleware

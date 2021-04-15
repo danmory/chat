@@ -1,8 +1,8 @@
 const express = require( 'express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const authMiddleware = require('./middlewares/authorization')
-const validateMiddleware = require('./middlewares/validate')
+const authMiddleware = require('./middlewares/authMiddleware')
+const validateMiddleware = require('./middlewares/validateMiddleware')
 
 const app = express()
 app.use(bodyParser.urlencoded({ extended: true }))
