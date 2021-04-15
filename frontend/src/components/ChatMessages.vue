@@ -1,6 +1,6 @@
 <template>
   <div class="chat-messages">
-    <p v-for="m of messages">{{m.user}} says:{{m.message}}</p>
+    <p v-for="m in messages">{{m.user}} says: {{m.message}}</p>
   </div>
 </template>
 
@@ -16,7 +16,7 @@
     },
     methods: {
       init(){
-        this.socket.onmessage = (message) => this.messages.push(message)
+        this.socket.onmessage = (message) => this.messages.push(JSON.parse(message.data))
       }
     }
   }
