@@ -28,7 +28,7 @@
         this.socket = new WebSocket(`ws://${SERVER_URL}/${this.name}&${this.room}`)
         this.socket.onopen = () => alert('connection established')
         this.socket.onclose = () => {
-          alert('closed')
+          alert('connection closed')
           this.$emit('unauthorized')
         }
         this.socket.onerror = (err) => alert(`error: ${err}`)
@@ -40,3 +40,8 @@
     }
   }
 </script>
+
+<style lang="sass">
+  h1
+    margin-top: 0
+</style>

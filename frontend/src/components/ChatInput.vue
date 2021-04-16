@@ -21,3 +21,9 @@
     }
   }
 </script>
+
+<style lang="sass" scoped>
+  .chat-input
+    position: fixed
+    bottom: 10px
+</style>

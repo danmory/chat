@@ -1,8 +1,8 @@
 <template>
-  <h1>Authorize</h1>
+  <h1>Authorization</h1>
   <form class="authorization-form">
-    <input name="name" id="name" type="text" v-model="name" placeholder="name">
-    <input name="room" id="room" type="text" v-model="room" placeholder="room">
+    <input name="name" id="name" type="text" v-model="name" placeholder="enter your name">
+    <input name="room" id="room" type="text" v-model="room" placeholder="enter room">
     <button type="button" @click="enterRoom">Enter</button>
   </form>
 </template>
@@ -37,3 +37,29 @@
     }
   }
 </script>
+
+<style lang="sass" scoped>
+  h1
+    width: 50%
+    margin: 0 auto
+    text-align: center
+    position: relative
+    top: 45%
+
+  .authorization-form
+    position: relative
+    top: 45%
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: center
+    input, button
+      margin-top: 10px
+    input
+      border: none
+      outline: none
+      border-bottom: 1px solid black
+      transition: border-bottom-color ease-out
+    input:focus
+      border-bottom-color: blue
+</style>

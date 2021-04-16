@@ -1,6 +1,8 @@
 <template>
-  <AuthorizationForm v-if="!isAuthorized" @authorized="authorize"></AuthorizationForm>
-  <Chat v-else-if="isAuthorized" :="userInfo" @unauthorized="unauthorize"></Chat>
+  <div class="container">
+    <AuthorizationForm v-if="!isAuthorized" @authorized="authorize"></AuthorizationForm>
+    <Chat v-else-if="isAuthorized" :="userInfo" @unauthorized="unauthorize"></Chat>
+  </div>
 </template>
 
 <script>
@@ -30,3 +32,9 @@
   }
 </script>
 
+<style lang="sass" scoped>
+  .container
+    height: 100vh
+    width: 500px
+    margin: 0 auto
+</style>

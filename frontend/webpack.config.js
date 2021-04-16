@@ -5,7 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 const stylesLoader = (additional = null) => {
     const loaders = ['vue-style-loader', 'css-loader']
-    if (additional) loaders.push(`${additional}-loader`)
+    if (additional) loaders.push(additional)
     return loaders
 }
 
@@ -24,7 +24,13 @@ module.exports = {
     module: {
         rules: [
             { test: /\.css$/, use: stylesLoader() },
-            { test: /\.s[ac]ss$/, use: stylesLoader('sass') },
+            { test: /\.sass$/, use: stylesLoader(
+                {
+                    loader: 'sass-loader',
+                    options: { sassOptions: { indentedSyntax: true } }
+                })
+            },
+            { test: /\.scss$/, use: stylesLoader('sass-loader') },
             { test: /\.vue$/, loader: 'vue-loader' },
             {
                 test: /\.js$/,
