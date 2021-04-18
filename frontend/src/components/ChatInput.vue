@@ -24,6 +24,6 @@
 
 <style lang="sass" scoped>
   .chat-input
-    position: fixed
-    bottom: 10px
+    display: flex
+    justify-content: center
 </style>

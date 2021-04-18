@@ -32,9 +32,11 @@
   }
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
   .container
     height: 100vh
     width: 500px
     margin: 0 auto
+  h1
+    text-align: center
 </style>

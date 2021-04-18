@@ -1,7 +1,9 @@
 <template>
-  <h1>Chat</h1>
-  <ChatMessages :socket="socket"></ChatMessages>
-  <ChatInput :socket="socket" :name="name" :room="room"></ChatInput>
+  <div class="chat">
+    <h1>Chat</h1>
+    <ChatMessages :socket="socket"></ChatMessages>
+    <ChatInput :socket="socket" :name="name" :room="room"></ChatInput>
+  </div>
 </template>
 
 <script>
@@ -41,7 +43,11 @@
   }
 </script>
 
-<style lang="sass">
-  h1
-    margin-top: 0
+<style lang="sass" scoped>
+  .chat
+    height: 100vh
+    display: grid
+    grid-template-rows: 50px 1fr 20px
+    h1
+      margin: 0
 </style>

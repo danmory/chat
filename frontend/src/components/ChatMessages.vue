@@ -25,12 +25,9 @@
 
 <style lang="sass" scoped>
   .chat-messages
-    margin-top: 60px
-    .message
-      border: 1px solid blue
-      border-radius: 50%
-      padding: 3px
-      text-align: center
-      width: 400px
-      overflow: hidden
+    display: flex
+    flex-direction: column
+    justify-content: start
+    overflow-y: scroll
+    height: 100%
 </style>
