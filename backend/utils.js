@@ -1,3 +1,6 @@
+const User = require('./models/User')
+const Room = require('./models/Room')
+
 /** Comparing objects based on their content */
 function objDeepCompare(o1, o2){
     return JSON.stringify(o1) === JSON.stringify(o2)
@@ -15,9 +18,17 @@ function broadcast(m, wss){
     })
 }
 
-/** remove user from users list */
-function removeUser(users, user){
-    users.splice(users.indexOf(user))
+/** remove user from existing users */
+async function removeUser(name){
+    await User.deleteOne({ name })
 }
 
-module.exports = { objDeepCompare, broadcast, removeUser }
+/** remove room if there are no users in it */
+async function tryRemoveRoom(room){
+    const user = await User.findOne({ room })
+    if (!user){
+        await Room.deleteOne({ room })
+    }
+}
+
+module.exports = { objDeepCompare, broadcast, removeUser, tryRemoveRoom }
