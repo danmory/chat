@@ -25,16 +25,24 @@ const rooms = []
 
 /* PROCESS USERS WANT TO AUTHORIZE */
 app.post('/enter', [validateMiddleware, authMiddleware(users)], (req, res) => {
-    users.push(req.body.name)
-    rooms.push(req.body.room)
+    try {
+        users.push(req.body.name)
+        rooms.push(req.body.room)
+    } catch (e){
+        res.status(500).send(JSON.stringify({err: e}))
+    }
     res.sendStatus(200)
 })
 
 /* WORKING WITH SOCKET */
 wss.on('connection', (socket, req) => {
     /* SAVE USER NAME AND ROOM IN SOCKET*/
-    [socket.name, socket.room] = req.url.replace('/', '').split('&')
-    /* CHECK WHETHER USER CREATED ITS ACCOUNT BEFORE USING /enter ENDPOINT
+    try {
+        [socket.name, socket.room] = req.url.replace('/', '').split('&')
+    } catch{
+        socket.close()
+    }
+    /* CHECK WHETHER USER CREATED ITS ACCOUNT BEFORE
     *  IF NOT THEN CONNECTION WILL NOT BE ESTABLISHED
     * */
     if (!rooms.includes(socket.room) || !users.includes(socket.name)){
